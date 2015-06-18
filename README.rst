@@ -11,7 +11,7 @@ When you are ready to take a challenge, start the server::
 	cd babeldix
 	python server.py
 
-Finally, run your program from a different command-line to keep its output seperate from the server messages.
+Finally, run your program from a different command-line to keep its output seperate from the server messages.  You can do the challenges in any order and do not need to re-start the server between challenges.
 
 -------------
 The Languages
@@ -19,14 +19,15 @@ The Languages
 
 Spend one week on each of the following languages:
 
- * week 1: python
+* week 1: python
 
 For each language, keep notes on your blog including:
 
- * How you installed the language on your computer.
- * What web pages you found useful for learning the language.
- * What web pages you found useful as references.
- * Your impressions of the advantages and disadvantages of the language.
+* How you installed the language on your computer.
+* What web pages you found useful for learning the language.
+* What web pages you found useful as references.
+* Your impressions of the advantages and disadvantages of the language.
+* Your notes on how you solved each challenge.
 
 ----------------
 Challenge Format
@@ -70,4 +71,4 @@ The square brackets ``[...]`` in this message identify JSON arrays, so this mess
 	bin-8: 24,25,26
 	bin-9: 27,28,29
 
-Your challenge is to count how many values in the second array ``[26,0,1,...,23,13]`` fall into each bin and then return these counts.  The correct answer in this case is ``[8,10,15,12,9,11,5,9,11,10]``, which means that the are 8 values equal to 0, 1, or 2 (``bin-0``), etc.
+Your challenge is to count how many values in the second array ``[26,0,1,...,23,13]`` fall into each bin and then return these counts.  The correct answer in this case is ``[8,10,15,12,9,11,5,9,11,10]``, which means that there are 8 values equal to 0, 1, or 2 (bin-0), 10 values equal to 3, 4, or 5 (bin-1), etc.
