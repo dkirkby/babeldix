@@ -57,8 +57,8 @@ class Circles(Task):
         data = []
         num_circles = random.randint(self.min_circles, self.max_circles)
         for i in range(num_circles):
-            x,y = random.randint(-2, 10)/8, random.randint(-2, 10)/8
-            r = random.randint(1,5)/8
+            x,y = random.randint(-1, 17)/16, random.randint(-1, 17)/16
+            r = random.randint(2,5)/16
             data.append([x,y,r])
         return data
 
@@ -72,7 +72,7 @@ class Circles(Task):
                 if d2 < r**2:
                     num_hits += 1
                     break
-        return num_hits/num_darts
+        return (num_darts - num_hits)/num_darts
 
     @staticmethod
     def is_correct(response, answer):

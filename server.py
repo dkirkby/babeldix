@@ -17,7 +17,7 @@ import babeldix
 tasks = {
     'hello': babeldix.Hello(),
     'histogram': babeldix.Histogram(num_values=100, bin_size=3, num_bins= 10),
-    'circles': babeldix.Circles(min_circles=3, max_circles=5),
+    'circles': babeldix.Circles(min_circles=4, max_circles=6),
 }
 
 class Handler(SocketServer.StreamRequestHandler):

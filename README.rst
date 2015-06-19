@@ -6,6 +6,11 @@ Install the challenge server from github using::
 
 	git clone https://github.com/dkirkby/babeldix.git
 
+To update to the latest version of the server after your initial installation, use::
+
+	cd babeldix
+	git pull
+
 When you are ready to take a challenge, start the server::
 
 	cd babeldix
@@ -72,3 +77,22 @@ The square brackets ``[...]`` in this message identify JSON arrays, so this mess
 	bin-9: 27,28,29
 
 Your challenge is to count how many values in the second array ``[26,0,1,...,23,13]`` fall into each bin and then return these counts.  The correct answer in this case is ``[8,10,15,12,9,11,5,9,11,10]``, which means that there are 8 values equal to 0, 1, or 2 (bin-0), 10 values equal to 3, 4, or 5 (bin-1), etc.
+
+Circles Challenge
+-----------------
+
+In this challenge, you estimate the area of some random overlapping circles within a square using floating point arithmetic. Send the name ``"circles"`` to begin this challenge.  The server responds with a message like::
+
+	[[0.375,0.4375,0.125],[0.75,0.3125,0.125],[1.0,0.9375,0.1875],[0.4375,0.75,0.125],[0.1875,0.0625,0.3125],[0.5625,0.625,0.1875]]
+
+This is an array of 6 circles, where ``[0.375,0.4375,0.125]`` represents the first circle, and so on. The three numbers for each circle are the (xc,yc) coordinates of the circle's center and its radius. The picture below shows the six circles for this example:
+
+.. image:: img/circles.png
+
+The challenge here is to estimate the area of the blue rectangle that is not covered up by any circles.  The bottom-left and upper-right corners of the blue square are at coordinates (0,0) and (1,1). There are different ways to approach this problem, but a good way to get started is using a "Monte Carlo" method, which simulates throwing random darts at the square and measuring what fraction do not hit any circles:
+1. Generate a random x and y for the dart uniformly between 0 and 1.
+2. Loop over each circle's ``(xc,yc)`` and `r`` values.
+3. Calculate the square of the distance between the dart and the circle's center as ``(x-xc)**2 + (y-yc)**2``
+4. If this squared distance is less than ``r**2``, then the dart misses this circle.
+
+Since the total area of the square is one, your answer should always be between zero and one. Since your answer only needs to be within 0.01 of the correct answer, you do not need to use more than four decimal places when sending your answer.
