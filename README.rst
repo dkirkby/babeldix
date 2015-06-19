@@ -18,6 +18,8 @@ When you are ready to take a challenge, start the server::
 
 Finally, run your program from a different command-line to keep its output seperate from the server messages.  You can do the challenges in any order and do not need to re-start the server between challenges.
 
+This is free software, available under an MIT license.
+
 -------------
 The Languages
 -------------
@@ -90,7 +92,8 @@ In this challenge, you estimate the area of some random overlapping circles with
 This is an array of 6 circles, where ``[0.375,0.4375,0.125]`` represents the first circle, and so on. The three numbers for each circle are the (xc,yc) coordinates of the circle's center and its radius. The picture below shows the six circles for this example:
 
 .. image:: img/circles.png
-   :align: center
+		:align: center
+		:alt: Example circles challenge
 
 The challenge here is to estimate the area of the blue rectangle that is not covered up by any circles.  The bottom-left and upper-right corners of the blue square are at coordinates (0,0) and (1,1). There are different ways to approach this problem, but a good way to get started is using a "Monte Carlo" method, which simulates throwing random darts at the square and measuring what fraction do not hit any circles:
 
