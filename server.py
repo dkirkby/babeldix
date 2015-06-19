@@ -9,13 +9,15 @@ import threading
 import logging
 import json
 import pprint
+import timeit
 
 import babeldix
 
 
 tasks = {
     'hello': babeldix.Hello(),
-    'histogram': babeldix.Histogram(num_values=100, bin_size=3, num_bins= 10)
+    'histogram': babeldix.Histogram(num_values=100, bin_size=3, num_bins= 10),
+    'circles': babeldix.Circles(min_circles=3, max_circles=5),
 }
 
 class Handler(SocketServer.StreamRequestHandler):
@@ -45,12 +47,17 @@ class Handler(SocketServer.StreamRequestHandler):
         logging.info('[{}] CONNECTED'.format(port))
         command = self.receive()
         if command in tasks:
-            challenge = tasks[command].get_challenge()
-            answer = tasks[command].get_response(challenge)
+            task = tasks[command]
+            challenge = task.get_challenge()
+            answer = task.get_response(challenge)
+            start_time = timeit.default_timer()
             self.send(challenge)
             response = self.receive()
-            if response == answer:
+            stop_time = timeit.default_timer()
+            elapsed = stop_time - start_time
+            if task.is_correct(response, answer):
                 self.send('yes')
+                logging.info('[{}] CORRECT IN {:.3f}s'.format(port,elapsed))
             else:
                 self.send('no')
         else:

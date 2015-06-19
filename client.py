@@ -36,7 +36,8 @@ def main():
         sock.connect(('localhost', 1234))
         # Take a challenge.
         #take_challenge(sock, 'hello', babeldix.Hello)
-        take_challenge(sock, 'histogram', babeldix.Histogram)
+        #take_challenge(sock, 'histogram', babeldix.Histogram)
+        take_challenge(sock, 'circles', babeldix.Circles)
     finally:
         sock.close()
 

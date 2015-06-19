@@ -3,6 +3,6 @@
 
 __author__ = 'David Kirkby'
 __email__ = 'dkirkby@uci.edu'
-__version__ = '0.1.0'
+__version__ = '0.2.0'
 
-from task import Hello, Histogram
+from task import Hello, Histogram, Circles
