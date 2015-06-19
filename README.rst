@@ -53,7 +53,7 @@ All challenges consist of the following phases:
 3. Your program send the challenge solution.
 4. The server responds with either ``"yes"``, if your solution is correct, or else ``"no"``.
 
-If you are having trouble communicating with the server, check the server log messages for useful diagnostics.
+If you are having trouble communicating with the server, check the server log messages for useful diagnostics.  You can also check the server log to see how much time your program used to calculate the solution.
 
 The available challenges are described below.
 
@@ -90,7 +90,7 @@ In this challenge, you estimate the area of some random overlapping circles with
 This is an array of 6 circles, where ``[0.375,0.4375,0.125]`` represents the first circle, and so on. The three numbers for each circle are the (xc,yc) coordinates of the circle's center and its radius. The picture below shows the six circles for this example:
 
 .. image:: img/circles.png
-	:align: center
+   :align: center
 
 The challenge here is to estimate the area of the blue rectangle that is not covered up by any circles.  The bottom-left and upper-right corners of the blue square are at coordinates (0,0) and (1,1). There are different ways to approach this problem, but a good way to get started is using a "Monte Carlo" method, which simulates throwing random darts at the square and measuring what fraction do not hit any circles:
 
