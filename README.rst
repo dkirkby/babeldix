@@ -34,6 +34,8 @@ For each language, keep notes on your blog including:
 * Your impressions of the advantages and disadvantages of the language.
 * Your notes on how you solved each challenge.
 
+Create a github repo for your challenge code. Put the code for each language into its own directory.
+
 ----------------
 Challenge Format
 ----------------
@@ -88,8 +90,10 @@ In this challenge, you estimate the area of some random overlapping circles with
 This is an array of 6 circles, where ``[0.375,0.4375,0.125]`` represents the first circle, and so on. The three numbers for each circle are the (xc,yc) coordinates of the circle's center and its radius. The picture below shows the six circles for this example:
 
 .. image:: img/circles.png
+	:align: center
 
 The challenge here is to estimate the area of the blue rectangle that is not covered up by any circles.  The bottom-left and upper-right corners of the blue square are at coordinates (0,0) and (1,1). There are different ways to approach this problem, but a good way to get started is using a "Monte Carlo" method, which simulates throwing random darts at the square and measuring what fraction do not hit any circles:
+
 1. Generate a random x and y for the dart uniformly between 0 and 1.
 2. Loop over each circle's ``(xc,yc)`` and `r`` values.
 3. Calculate the square of the distance between the dart and the circle's center as ``(x-xc)**2 + (y-yc)**2``

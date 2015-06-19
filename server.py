@@ -16,7 +16,8 @@ import babeldix
 
 tasks = {
     'hello': babeldix.Hello(),
-    'histogram': babeldix.Histogram(num_values=100, bin_size=3, num_bins= 10),
+    'histogram': babeldix.Histogram(num_values=1000, min_bin_size=2, max_bin_size=5,
+        min_num_bins= 10, max_num_bins=20),
     'circles': babeldix.Circles(min_circles=4, max_circles=6),
 }
 

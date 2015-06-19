@@ -27,15 +27,19 @@ class Hello(Task):
 
 class Histogram(Task):
 
-    def __init__(self, num_values, bin_size, num_bins):
+    def __init__(self, num_values, min_bin_size, max_bin_size, min_num_bins, max_num_bins):
         self.num_values = num_values
-        self.bin_size = bin_size
-        self.num_bins = num_bins
+        self.min_bin_size = min_bin_size
+        self.max_bin_size = max_bin_size
+        self.min_num_bins = min_num_bins
+        self.max_num_bins = max_num_bins
 
     def get_challenge(self):
-        max_value = self.num_bins * self.bin_size - 1
+        num_bins = random.randint(self.min_num_bins, self.max_num_bins)
+        bin_size = random.randint(self.min_bin_size, self.max_bin_size)
+        max_value = num_bins * bin_size - 1
         values = [random.randint(0, max_value) for i in range(self.num_values)]
-        return [[self.num_bins, self.bin_size], values]
+        return [[num_bins, bin_size], values]
 
     @staticmethod
     def get_response(challenge):
