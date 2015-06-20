@@ -9,6 +9,7 @@ from __future__ import division, print_function
 import random
 import gzip
 import re
+import operator
 
 
 class Task(object):
@@ -21,7 +22,7 @@ class Task(object):
 class Hello(Task):
 
     def get_challenge(self):
-        return 'hello'
+        return 'hello', 'goodbye'
 
     @staticmethod
     def get_answer(challenge):
@@ -41,7 +42,9 @@ class Histogram(Task):
         bin_size = random.randint(self.min_bin_size, self.max_bin_size)
         max_value = num_bins * bin_size - 1
         values = [random.randint(0, max_value) for i in range(self.num_values)]
-        return [[num_bins, bin_size], values]
+        challenge = [[num_bins, bin_size], values]
+        answer = Histogram.get_answer(challenge)
+        return challenge, answer
 
     @staticmethod
     def get_answer(challenge):
@@ -67,7 +70,8 @@ class Circles(Task):
             x,y = random.randint(-1, 17)/16, random.randint(-1, 17)/16
             r = random.randint(2,5)/16
             data.append([x,y,r])
-        return data
+        answer = Circles.get_answer(data)
+        return data, answer
 
     @staticmethod
     def get_answer(challenge):
@@ -96,7 +100,6 @@ class Plates(Task):
             with gzip.open('wordlist.dat.gz', mode='r') as f:
                 for line in f:
                     Plates.words.add(line.strip().lower())
-            print('read {} words.'.format(len(Plates.words)))
 
     def __init__(self, num_letters, min_points):
         assert num_letters > 0, 'num_letters <= 0'
@@ -106,21 +109,39 @@ class Plates(Task):
         Plates.load_words()
 
     def get_challenge(self):
-        points = None
-        while True:
-            plate = ''.join([chr(ord('A') + random.randint(0,26)) for i in range(self.num_letters)])
-            print('Trying {}'.format(plate))
-            answer = Plates.get_answer(plate)
-            break
-        return plate
+        answer = None
+        num_tries, max_tries = 0, 100
+        while answer is None and num_tries < max_tries:
+            num_tries += 1
+            plate = ''.join([chr(ord('A') + random.randint(0,25)) for i in range(self.num_letters)])
+            solutions = Plates.get_solutions(plate)
+            if solutions == {}:
+                continue
+            # Find the best score for this solution.
+            best_score = max(solutions.iteritems(), key=operator.itemgetter(1))[1]
+            if best_score < self.min_points:
+                continue
+            # Any solution with the best possible score is a valid answer.
+            answer = [ soln for soln,score in solutions.iteritems() if score == best_score ]
+        if answer is None:
+            raise RuntimeError('Giving up after {} tries.'.format(max_tries))
+        return plate, answer
 
     @staticmethod
-    def get_score(plate, word, solution='', score=0, solutions={}):
+    def find_solutions(plate, word, solution='', points=0, solutions=None):
+        """
+        Find ways that a word can be used as a solution for a plate.
+
+        Operates recursively on the letters in plate. Returns a dictionary of
+        solutions mapped to scores.  Each solution has the plate letters capitalized.
+        Returns an empty dictionary if word has no solutions for the plate.
+        """
+        if solutions is None:
+            solutions = {}
         if plate == '':
             # No more letters to find. Any trailing letters for an extra point?
-            if len(word) > 0:
-                score += 1
-            solutions[solution + word] = score
+            if solution:
+                solutions[solution + word] = (points + 1 if word else points)
             return solutions
         # Is the next letter in the remainder of the word?
         next = plate[0].lower()
@@ -131,25 +152,39 @@ class Plates(Task):
         for offset,letter in enumerate(word):
             if letter != next:
                 continue
-            if offset > 0:
-                # Add a point for putting letters before the next letter.
-                score += 1
-            remainder = word[offset+1:]
-            solution = word[:offset] + next.upper() + remainder
+            # Add a point for putting letters before the next letter.
+            new_points = points + 1 if offset > 0 else points
+            new_solution = solution + word[:offset] + next.upper()
             # Recursively look for the next letter in the remainder of the word.
-            return Plates.get_score(plate[1:], remainder, solution, score, solutions)
+            solutions = Plates.find_solutions(plate[1:], word[offset+1:], new_solution, new_points, solutions)
+        return solutions
 
     @staticmethod
-    def get_answer(challenge):
+    def get_solutions(plate):
+        """
+        Get all solutions for a plate in the dictionary.
+
+        Returns a dictionary of solutions mapped to scores. Each solution has
+        the plate letters capitalized.
+        """
         Plates.load_words()
         # Build a regular expression for words that fit this plate.
-        plate = challenge.lower()
-        regexp = '{letter}' + '{letter}'.join(challenge.lower()) + '{letter}$'
+        regexp = '{letter}' + '{letter}'.join(plate.lower()) + '{letter}$'
         regexp = re.compile(regexp.format(letter='[a-z]*'))
-        candidates = []
+        solutions = {}
         for word in Plates.words:
             if regexp.match(word):
-                candidates.append(word)
-        if not candidates:
-            return []
-        return candidates
+                solutions.update(Plates.find_solutions(plate, word))
+        return solutions
+
+    @staticmethod
+    def get_answer(plate):
+        solutions = Plates.get_solutions(plate)
+        if not solutions:
+            return ''
+        # Return a solution with the best score for this plate.
+        return max(solutions.iteritems(), key=operator.itemgetter(1))[0]
+
+    @staticmethod
+    def is_correct(response, answer):
+        return response in answer

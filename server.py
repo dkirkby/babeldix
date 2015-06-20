@@ -51,8 +51,7 @@ class Handler(SocketServer.StreamRequestHandler):
         command = self.receive()
         if command in tasks:
             task = tasks[command]
-            challenge = task.get_challenge()
-            answer = task.get_answer(challenge)
+            challenge, answer = task.get_challenge()
             start_time = timeit.default_timer()
             self.send(challenge)
             response = self.receive()

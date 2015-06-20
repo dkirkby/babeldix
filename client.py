@@ -23,9 +23,9 @@ def take_challenge(sock, command, responder):
     send_frame(sock, command)
     challenge = get_frame(sock)
     print('challenge: {}'.format(challenge))
-    response = responder.get_response(challenge)
-    print('response: {}'.format(response))
-    send_frame(sock, response)
+    answer = responder.get_answer(challenge)
+    print('answer: {}'.format(answer))
+    send_frame(sock, answer)
     answer = get_frame(sock)
     print('answer: {}'.format(answer))
 
