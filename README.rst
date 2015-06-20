@@ -103,3 +103,30 @@ The challenge here is to estimate the area of the blue rectangle that is not cov
 4. If this squared distance is less than ``r**2``, then the dart misses this circle.
 
 Since the total area of the square is one, your answer should always be between zero and one. Since your answer only needs to be within 0.01 of the correct answer, you do not need to use more than four decimal places when sending your answer.
+
+Plates Challenge
+----------------
+
+In this challenge, you find the best solution to a word game originally based on license plates. Send the name ``"plates"`` to begin this challenge. The server responds with a message like::
+
+	"IGH"
+
+A possible solution is any word in [this dictionary](https://github.com/dkirkby/babeldix/blob/master/wordlist.dat.gz) that contain these three letters in the same order.  Solutions must be formatted so that the original three letters are in upper case and any added letters are lower case.  The points for any solution is the number of slots that have been filled with one or more letters, where the possible slots (indicated with asterisks) are ``*I*G*H*``. The maximum points for a three-letter license plate is four.  Some possible solutions and their points for this example are::
+
+	hIGH: 1
+	hIGHland: 2
+	hIGhtHs: 3
+	hIeroGlypHics: 4
+
+Note that sometimes the plate letters can be distributed differently for the same word, for example::
+
+	taillIGHts: 2
+	taIlliGHts: 3
+	indIstinGuisHable: 4
+	indistInGuisHable: 4
+
+Your challenge is to find the maximum possible points for the challenge plate and return a (properly capitalized) word with this maximum score.  There are usually several possible words with the same maximum score, so you only need to find and return one of these.  In this example, a possible correct response would be::
+
+	"hIeroGlypHics"
+
+The dictionary is a compressed text file with one word per line.  Words are all lower case and lines are terminated with a newline ``\n`` character.  There are 113,724 words in the dictionary.
