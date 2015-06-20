@@ -121,7 +121,7 @@ In this challenge, you find the best solution to a word game originally based on
 
 	"IGH"
 
-A possible solution is any word in [this dictionary](https://github.com/dkirkby/babeldix/blob/master/wordlist.dat.gz) that contain these three letters in the same order.  Solutions must be formatted so that the original three letters are in upper case and any added letters are lower case.  The points for any solution is the number of slots that have been filled with one or more letters, where the possible slots (indicated with asterisks) are ``*I*G*H*``. The maximum points for a three-letter license plate is four.  Some possible solutions and their points for this example are::
+A possible solution is any word in `this dictionary <https://github.com/dkirkby/babeldix/blob/master/wordlist.dat.gz>`_ that contain these three letters in the same order.  Solutions must be formatted so that the original three letters are in upper case and any added letters are in lower case.  The points for any solution is the number of slots that have been filled with one or more letters, where the possible slots (indicated with asterisks) are ``*I*G*H*``. Therefore, 0-4 points are possible for a three-letter license plate.  Some possible solutions and their points for this example are::
 
 	hIGH: 1
 	hIGHland: 2
@@ -135,8 +135,8 @@ Note that sometimes the plate letters can be distributed differently for the sam
 	indIstinGuisHable: 4
 	indistInGuisHable: 4
 
-Your challenge is to find the maximum possible points for the challenge plate and return a (properly capitalized) word with this maximum score.  There are usually several possible words with the same maximum score, so you only need to find and return one of these.  In this example, a possible correct response would be::
+Your challenge is to find the maximum possible points for the challenge plate and return a (properly capitalized) word with this maximum score.  There are usually several possible words with the same maximum score, so you only need to find and return one of these.  In this example, a possible correct response would be (note the quotation marks)::
 
 	"hIeroGlypHics"
 
-The dictionary is a compressed text file with one word per line.  Words are all lower case and lines are terminated with a newline ``\n`` character.  There are 113,724 words in the dictionary.
+The dictionary is a compressed text file with one word per line.  Words are all lower case and lines are terminated with a newline ``\n`` character.  There are 113,724 words in the dictionary.  You can uncompress the dictionary by hand for reading into your program, but give yourself a pat on the back if your code can read the compressed file directly.
