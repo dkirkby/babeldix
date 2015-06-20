@@ -1,8 +1,20 @@
 # Use py.test tests.py to run these unit tests.
 
 import pytest
+import math
 
 import babeldix
+
+
+class TestCircles(object):
+
+    def test_inscribed(self):
+        assert babeldix.Circles.is_correct(
+            babeldix.Circles.get_answer([[0.5,0.5,0.5]]), 1 - math.pi/4)
+
+    def test_covered(self):
+        assert babeldix.Circles.is_correct(
+            babeldix.Circles.get_answer([[0.5,0.5,1.0]]), 0)
 
 
 class TestPlatesScore(object):
@@ -44,6 +56,7 @@ class TestPlatesScore(object):
 
     def test_score_multi_different(self):
         assert babeldix.Plates.find_solutions('ABC','aaabc') == {'AaaBC':1, 'aAaBC':2, 'aaABC':1}
+
 
 class TestPlateSolutions(object):
 

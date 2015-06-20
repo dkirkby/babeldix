@@ -104,6 +104,16 @@ The challenge here is to estimate the area of the blue rectangle that is not cov
 
 Since the total area of the square is one, your answer should always be between zero and one. Since your answer only needs to be within 0.01 of the correct answer, you do not need to use more than four decimal places when sending your answer.
 
+If you are having trouble debugging your code, try the following challenge input, which represents a single circle inscribed in the unit square::
+
+	[[0.5,0.5,0.5]]
+
+The area of the square that is not covered by the circle is exactly 1 - π/4 in this case, so you can compare this with your program's estimated answer.  For another debugging test, try::
+
+	[[0.5,0.5,1.0]]
+
+which represents a single circle that completely covers the square, so the exact answer is zero.
+
 Plates Challenge
 ----------------
 
