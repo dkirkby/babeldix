@@ -37,7 +37,8 @@ def main():
         # Take a challenge.
         #take_challenge(sock, 'hello', babeldix.Hello)
         #take_challenge(sock, 'histogram', babeldix.Histogram)
-        take_challenge(sock, 'circles', babeldix.Circles)
+        #take_challenge(sock, 'circles', babeldix.Circles)
+        take_challenge(sock, 'plates', babeldix.Plates)
     finally:
         sock.close()
 

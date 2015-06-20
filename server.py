@@ -19,7 +19,9 @@ tasks = {
     'histogram': babeldix.Histogram(num_values=1000, min_bin_size=2, max_bin_size=5,
         min_num_bins= 10, max_num_bins=20),
     'circles': babeldix.Circles(min_circles=4, max_circles=6),
+    'plates': babeldix.Plates(num_letters=3, min_points=3),
 }
+
 
 class Handler(SocketServer.StreamRequestHandler):
 
@@ -50,7 +52,7 @@ class Handler(SocketServer.StreamRequestHandler):
         if command in tasks:
             task = tasks[command]
             challenge = task.get_challenge()
-            answer = task.get_response(challenge)
+            answer = task.get_answer(challenge)
             start_time = timeit.default_timer()
             self.send(challenge)
             response = self.receive()
@@ -64,8 +66,10 @@ class Handler(SocketServer.StreamRequestHandler):
         else:
             self.send('error')
 
+
 class ThreadedTCPServer(SocketServer.ThreadingMixIn, SocketServer.TCPServer):
     pass
+
 
 def main():
     logging.basicConfig(level=logging.DEBUG, format='%(asctime)s # %(message)s')
@@ -83,6 +87,7 @@ def main():
     finally:
         server.shutdown()
         logging.info('Server shutdown.')
+
 
 if __name__ == '__main__':
     main()
