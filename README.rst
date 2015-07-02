@@ -141,4 +141,4 @@ Your challenge is to find the maximum possible points for the challenge plate an
 
 	"hIeroGlypHics"
 
-The dictionary is a compressed text file with one word per line.  You can either `download <https://github.com/dkirkby/babeldix/blob/master/wordlist.dat.gz>`_  or else copy the ``wordlist.dat.gz`` file from your local copy of ``babeldix``. Words are all lower case and lines are terminated with a newline ``\n`` character.  There are 113,724 words in the dictionary.  You can uncompress the dictionary by hand for reading into your program, but give yourself a pat on the back if your code can read the compressed file directly.
+The dictionary is a compressed text file with one word per line.  You can either `download it <https://github.com/dkirkby/babeldix/blob/master/wordlist.dat.gz>`_  or else copy the ``wordlist.dat.gz`` file from your local copy of ``babeldix``. Words are all lower case and lines are terminated with a newline ``\n`` character.  There are 113,724 words in the dictionary.  You can uncompress the dictionary by hand for reading into your program, but give yourself a pat on the back if your code can read the compressed file directly.
