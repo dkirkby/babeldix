@@ -27,6 +27,8 @@ The Languages
 Spend one week on each of the following languages:
 
 * week 1: python
+* week 2: C
+* week 3: Java
 
 For each language, keep notes on your blog including:
 
@@ -121,7 +123,7 @@ In this challenge, you find the best solution to a word game originally based on
 
 	"IGH"
 
-A possible solution is any word in `this dictionary <https://github.com/dkirkby/babeldix/blob/master/wordlist.dat.gz>`_ that contain these three letters in the same order.  Solutions must be formatted so that the original three letters are in upper case and any added letters are in lower case.  The points for any solution is the number of slots that have been filled with one or more letters, where the possible slots (indicated with asterisks) are ``*I*G*H*``. Therefore, 0-4 points are possible for a three-letter license plate.  Some possible solutions and their points for this example are::
+A possible solution is any word in a specified dictionary that contain these three letters in the same order. Solutions must be formatted so that the original three letters are in upper case and any added letters are in lower case.  The points for any solution is the number of slots that have been filled with one or more letters, where the possible slots (indicated with asterisks) are ``*I*G*H*``. Therefore, 0-4 points are possible for a three-letter license plate.  Some possible solutions and their points for this example are::
 
 	hIGH: 1
 	hIGHland: 2
@@ -139,4 +141,4 @@ Your challenge is to find the maximum possible points for the challenge plate an
 
 	"hIeroGlypHics"
 
-The dictionary is a compressed text file with one word per line.  Words are all lower case and lines are terminated with a newline ``\n`` character.  There are 113,724 words in the dictionary.  You can uncompress the dictionary by hand for reading into your program, but give yourself a pat on the back if your code can read the compressed file directly.
+The dictionary is a compressed text file with one word per line.  You can either `download <https://github.com/dkirkby/babeldix/blob/master/wordlist.dat.gz>`_  or else copy the `wordlist.dat.gz` file from your local copy of `babeldix`. Words are all lower case and lines are terminated with a newline ``\n`` character.  There are 113,724 words in the dictionary.  You can uncompress the dictionary by hand for reading into your program, but give yourself a pat on the back if your code can read the compressed file directly.
